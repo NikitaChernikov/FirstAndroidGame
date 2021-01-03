@@ -27,6 +27,8 @@ public class HeroKnight : MonoBehaviour {
 
     public int health;
     public HeroHealthBar healthBar;
+
+    public bool canMove = true;
     /// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -77,7 +79,7 @@ public class HeroKnight : MonoBehaviour {
         }
 
         // Move
-        if (!m_rolling && !Input.GetMouseButton(1))
+        if (!m_rolling && canMove)
             m_body2d.velocity = new Vector2(inputX * m_speed, m_body2d.velocity.y);
 
         //Set AirSpeed in animator
@@ -93,7 +95,7 @@ public class HeroKnight : MonoBehaviour {
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         //Attack
-        if (Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f)
+        if (Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && canMove == true)
         {
 
             m_currentAttack++;
@@ -104,7 +106,7 @@ public class HeroKnight : MonoBehaviour {
 
             // Reset Attack combo if time since last attack is too large
             if (m_timeSinceAttack > 1.0f)
-                m_currentAttack = 1; 
+                m_currentAttack = 1;
 
             // Call one of three attack animations "Attack1", "Attack2", "Attack3"
             m_animator.SetTrigger("Attack" + m_currentAttack);
@@ -113,19 +115,23 @@ public class HeroKnight : MonoBehaviour {
             m_timeSinceAttack = 0.0f;
 
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            
+
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         }
 
         // Block
-        else if (Input.GetMouseButtonDown(1))
+        else if (Input.GetMouseButtonDown(1) && canMove == true)
         {
+            canMove = false;
             m_animator.SetTrigger("Block");
             m_animator.SetBool("IdleBlock", true);
         }
 
         else if (Input.GetMouseButtonUp(1))
+        {
+            canMove = true;
             m_animator.SetBool("IdleBlock", false);
+        }
 
         // Roll
         else if (Input.GetKeyDown("left shift") && !m_rolling)
@@ -134,7 +140,7 @@ public class HeroKnight : MonoBehaviour {
             m_animator.SetTrigger("Roll");
             m_body2d.velocity = new Vector2(m_facingDirection * m_rollForce, m_body2d.velocity.y);
         }
-            
+
 
         //Jump
         else if (Input.GetKeyDown("space") && m_grounded)
@@ -147,7 +153,7 @@ public class HeroKnight : MonoBehaviour {
         }
 
         //Run
-        else if (Mathf.Abs(inputX) > Mathf.Epsilon)
+        else if (Mathf.Abs(inputX) > Mathf.Epsilon && canMove == true)
         {
             // Reset timer
             m_delayToIdle = 0.05f;
@@ -159,8 +165,8 @@ public class HeroKnight : MonoBehaviour {
         {
             // Prevents flickering transitions to idle
             m_delayToIdle -= Time.deltaTime;
-                if(m_delayToIdle < 0)
-                    m_animator.SetInteger("AnimState", 0);
+            if (m_delayToIdle < 0)
+                m_animator.SetInteger("AnimState", 0);
         }
     }
 

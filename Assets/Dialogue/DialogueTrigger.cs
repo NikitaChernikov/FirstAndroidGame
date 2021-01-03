@@ -18,6 +18,7 @@ public class DialogueTrigger : MonoBehaviour
 
     public void TriggerDialogue()
     {
+        FindObjectOfType<HeroKnight>().canMove = false;
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
     }
 
