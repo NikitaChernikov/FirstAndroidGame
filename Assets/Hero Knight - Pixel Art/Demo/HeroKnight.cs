@@ -220,15 +220,15 @@ public class HeroKnight : MonoBehaviour {
     {
         if (other.CompareTag("Potion"))
         {
-            if (health <= 25)
+            if (health <= 45)
             {
                 health += 5;
                 healthBar.SetHealth(health);
             }
-            else if (health > 25 && health < 30)
+            else if (health > 45 && health < 50)
             {
-                health = 30;
-                healthBar.SetHealth(30);
+                health = 50;
+                healthBar.SetHealth(50);
             }
             else
             {
