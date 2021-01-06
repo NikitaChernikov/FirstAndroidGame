@@ -68,19 +68,24 @@ public class HeroKnight : MonoBehaviour {
         // Swap direction of sprite depending on walk direction
         if (inputX > 0)
         {
+            
             GetComponent<SpriteRenderer>().flipX = false;
             m_facingDirection = 1;
         }
             
         else if (inputX < 0)
         {
+            
             GetComponent<SpriteRenderer>().flipX = true;
             m_facingDirection = -1;
         }
 
         // Move
         if (!m_rolling && canMove)
+        {
+            
             m_body2d.velocity = new Vector2(inputX * m_speed, m_body2d.velocity.y);
+        }
 
         //Set AirSpeed in animator
         m_animator.SetFloat("AirSpeedY", m_body2d.velocity.y);
@@ -94,11 +99,15 @@ public class HeroKnight : MonoBehaviour {
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+       
+
         //Attack
         if (Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && canMove == true)
         {
 
             m_currentAttack++;
+
+            FindObjectOfType<AudioManager>().Play("Hit");
 
             // Loop back to one after third attack
             if (m_currentAttack > 3)
@@ -145,6 +154,7 @@ public class HeroKnight : MonoBehaviour {
         //Jump
         else if (Input.GetKeyDown("space") && m_grounded)
         {
+            FindObjectOfType<AudioManager>().Play("Jump");
             m_animator.SetTrigger("Jump");
             m_grounded = false;
             m_animator.SetBool("Grounded", m_grounded);
@@ -158,6 +168,7 @@ public class HeroKnight : MonoBehaviour {
             // Reset timer
             m_delayToIdle = 0.05f;
             m_animator.SetInteger("AnimState", 1);
+            
         }
 
         //Idle
