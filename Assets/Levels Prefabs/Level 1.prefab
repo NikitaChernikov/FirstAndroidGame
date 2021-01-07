@@ -2103,7 +2103,7 @@ RectTransform:
   m_Children:
   - {fileID: 3507646954430043452}
   m_Father: {fileID: 3511884239200631901}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2312,7 +2312,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3511884238971933189}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3507646954309154724
 GameObject:
@@ -13889,7 +13889,7 @@ RectTransform:
   m_Children:
   - {fileID: 3507646955217416587}
   m_Father: {fileID: 3511884238971933189}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -20153,7 +20153,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3511884239200631901}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3507646955259273939
 GameObject:
@@ -20183,7 +20183,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3512218159648254828}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3507646955283857834
 GameObject:
@@ -22691,7 +22691,7 @@ RectTransform:
   m_Children:
   - {fileID: 3507646954747168877}
   m_Father: {fileID: 3512218160163924073}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -24061,7 +24061,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3512218160163924073}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3507646955985087019
 GameObject:
@@ -24669,7 +24669,7 @@ RectTransform:
   m_Children:
   - {fileID: 3507646955727559423}
   m_Father: {fileID: 3512218159648254828}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -25371,7 +25371,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -375.55, y: -171.32}
+  m_AnchoredPosition: {x: -376.47, y: -171.39}
   m_SizeDelta: {x: 1.9319878, y: 4.3127537}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &4889342998056864976
@@ -25469,7 +25469,37 @@ MonoBehaviour:
   - name: Jump
     clip: {fileID: 8300000, guid: c15a699fcedfa2e4787c4b7611f64221, type: 3}
     volume: 1
-    pitch: 3
+    pitch: 1
+    source: {fileID: 0}
+  - name: Steps
+    clip: {fileID: 8300000, guid: 4e999b54d7aba424b9e25075cbf8b35a, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: ShieldUp
+    clip: {fileID: 8300000, guid: af5aa6d8c72d4564e9f4a238c0fefdfd, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Damage
+    clip: {fileID: 8300000, guid: db443b3ffb6b67c4e9451cdb9ad3e6f5, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: ShieldReflect
+    clip: {fileID: 8300000, guid: c2113f9b26848b041a21139402b075ae, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: BossSteps
+    clip: {fileID: 8300000, guid: 4e999b54d7aba424b9e25075cbf8b35a, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: BossHit
+    clip: {fileID: 8300000, guid: ee864e180971fcb4f8e2c6e993541388, type: 3}
+    volume: 1
+    pitch: 1
     source: {fileID: 0}
 --- !u!1 &7143370360767880156
 GameObject:
@@ -25917,11 +25947,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8413529789942519730, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.62
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8413529789942519730, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.96
+      value: -12.77
       objectReference: {fileID: 0}
     - target: {fileID: 8413529789942519730, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
       propertyPath: m_LocalPosition.z

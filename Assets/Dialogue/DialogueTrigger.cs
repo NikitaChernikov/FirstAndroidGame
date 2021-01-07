@@ -16,6 +16,14 @@ public class DialogueTrigger : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public void TriggerDialogue()
     {
         FindObjectOfType<HeroKnight>().canMove = false;

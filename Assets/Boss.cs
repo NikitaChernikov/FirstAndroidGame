@@ -49,8 +49,15 @@ public class Boss : MonoBehaviour
         }
 
         //run
-        if(run)
+        if (run)
+        {
+            
             transform.position = Vector2.Lerp(transform.position, GameObject.Find("HeroKnight").transform.position, m_speed * Time.deltaTime);
+        }
+        else
+        {
+            FindObjectOfType<AudioManager>().Stop("BossSteps");
+        }
         
     }
 
@@ -63,6 +70,7 @@ public class Boss : MonoBehaviour
                 sr.flipX = false;
             else if (GameObject.Find("HeroKnight").transform.position.x < gameObject.transform.position.x)
                 sr.flipX = true;
+            FindObjectOfType<AudioManager>().Play("BossSteps");
             idle = false;
             run = true;
         }
@@ -100,12 +108,14 @@ public class Boss : MonoBehaviour
 
     public void onPlayerAttack()
     {
+        FindObjectOfType<AudioManager>().Play("BossHit");
         player.TakeDamage(damage);
     }
 
 
     public void TakeDamage(int damage)
     {
+        FindObjectOfType<AudioManager>().Play("Damage");
         anim.SetTrigger("Hurt");
         health -= damage;
         enemyHealthBar.SetHealth(health);

@@ -25,4 +25,9 @@ public class EnemyHealthBar : MonoBehaviour
 
         fill.color = gradient.Evaluate(slider.normalizedValue);
     }
+
+    public void RemoveHealthBar()
+    {
+        Destroy(gameObject);
+    }
 }

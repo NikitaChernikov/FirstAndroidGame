@@ -3,21 +3,21 @@ using System.Collections;
 
 public class HeroKnight : MonoBehaviour {
 
-    [SerializeField] float      m_speed = 4.0f;
-    [SerializeField] float      m_jumpForce = 7.5f;
-    [SerializeField] float      m_rollForce = 6.0f;
-    [SerializeField] bool       m_noBlood = false;
+    [SerializeField] float m_speed = 4.0f;
+    [SerializeField] float m_jumpForce = 7.5f;
+    [SerializeField] float m_rollForce = 6.0f;
+    [SerializeField] bool m_noBlood = false;
     [SerializeField] GameObject m_slideDust;
 
-    private Animator            m_animator;
-    private Rigidbody2D         m_body2d;
-    private Sensor_HeroKnight   m_groundSensor;
-    private bool                m_grounded = false;
-    private bool                m_rolling = false;
-    private int                 m_facingDirection = 1;
-    private int                 m_currentAttack = 0;
-    private float               m_timeSinceAttack = 0.0f;
-    private float               m_delayToIdle = 0.0f;
+    private Animator m_animator;
+    private Rigidbody2D m_body2d;
+    private Sensor_HeroKnight m_groundSensor;
+    private bool m_grounded = false;
+    private bool m_rolling = false;
+    private int m_facingDirection = 1;
+    private int m_currentAttack = 0;
+    private float m_timeSinceAttack = 0.0f;
+    private float m_delayToIdle = 0.0f;
 
     /// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public Transform attackPose;
@@ -34,7 +34,7 @@ public class HeroKnight : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         m_animator = GetComponent<Animator>();
         m_body2d = GetComponent<Rigidbody2D>();
@@ -43,7 +43,7 @@ public class HeroKnight : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update ()
+    void Update()
     {
         // Increase timer that controls attack combo
         m_timeSinceAttack += Time.deltaTime;
@@ -68,14 +68,14 @@ public class HeroKnight : MonoBehaviour {
         // Swap direction of sprite depending on walk direction
         if (inputX > 0)
         {
-            
+
             GetComponent<SpriteRenderer>().flipX = false;
             m_facingDirection = 1;
         }
-            
+
         else if (inputX < 0)
         {
-            
+
             GetComponent<SpriteRenderer>().flipX = true;
             m_facingDirection = -1;
         }
@@ -83,7 +83,7 @@ public class HeroKnight : MonoBehaviour {
         // Move
         if (!m_rolling && canMove)
         {
-            
+
             m_body2d.velocity = new Vector2(inputX * m_speed, m_body2d.velocity.y);
         }
 
@@ -99,7 +99,7 @@ public class HeroKnight : MonoBehaviour {
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-       
+
 
         //Attack
         if (Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && canMove == true)
@@ -131,6 +131,7 @@ public class HeroKnight : MonoBehaviour {
         // Block
         else if (Input.GetMouseButtonDown(1) && canMove == true)
         {
+            FindObjectOfType<AudioManager>().Play("ShieldUp");
             canMove = false;
             m_animator.SetTrigger("Block");
             m_animator.SetBool("IdleBlock", true);
@@ -151,6 +152,8 @@ public class HeroKnight : MonoBehaviour {
         }
 
 
+
+
         //Jump
         else if (Input.GetKeyDown("space") && m_grounded)
         {
@@ -168,7 +171,7 @@ public class HeroKnight : MonoBehaviour {
             // Reset timer
             m_delayToIdle = 0.05f;
             m_animator.SetInteger("AnimState", 1);
-            
+
         }
 
         //Idle
@@ -179,11 +182,24 @@ public class HeroKnight : MonoBehaviour {
             if (m_delayToIdle < 0)
                 m_animator.SetInteger("AnimState", 0);
         }
+
+
+
+        if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.A)) && m_grounded)
+        {
+            FindObjectOfType<AudioManager>().Play("Steps");
+        }
+        else if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.A) || !m_grounded)
+        {
+            FindObjectOfType<AudioManager>().Stop("Steps");
+        }  
     }
 
-    // Animation Events
-    // Called in end of roll animation.
-    void AE_ResetRoll()
+    
+
+// Animation Events
+// Called in end of roll animation.
+void AE_ResetRoll()
     {
         m_rolling = false;
     }
@@ -200,10 +216,12 @@ public class HeroKnight : MonoBehaviour {
     {
         if (Input.GetMouseButton(1))
         {
+            FindObjectOfType<AudioManager>().Play("ShieldReflect");
             health -= 0;
         }
         else
         {
+            FindObjectOfType<AudioManager>().Play("Damage");
             m_animator.SetTrigger("Hurt");
             health -= damage;
             healthBar.SetHealth(health);
