@@ -40,11 +40,14 @@ public class HeroKnight : MonoBehaviour {
         m_body2d = GetComponent<Rigidbody2D>();
         m_groundSensor = transform.Find("GroundSensor").GetComponent<Sensor_HeroKnight>();
         healthBar.SetMaxHealth(health);
+        FindObjectOfType<AudioManager>().Play("Background");
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        
         // Increase timer that controls attack combo
         m_timeSinceAttack += Time.deltaTime;
 
