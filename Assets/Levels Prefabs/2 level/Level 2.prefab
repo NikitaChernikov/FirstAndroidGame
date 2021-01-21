@@ -29,7 +29,7 @@ GameObject:
   - component: {fileID: 9119110694731042523}
   - component: {fileID: 9119110694731042521}
   - component: {fileID: 9119110694731042520}
-  - component: {fileID: 312811723}
+  - component: {fileID: 1954790270}
   m_Layer: 0
   m_Name: Dog
   m_TagString: Untagged
@@ -158,7 +158,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &312811723
+--- !u!114 &1954790270
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,10 +167,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 9119110694731042525}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5a483107eb5e3a4bb60bc7e48e61e12, type: 3}
+  m_Script: {fileID: 11500000, guid: a7c25b5b08fbc3d4e83e2bbccb519e8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 5
+  health: 2
+  damage: 5
+  distance: 4
 --- !u!1 &9119110694807117947
 GameObject:
   m_ObjectHideFlags: 0

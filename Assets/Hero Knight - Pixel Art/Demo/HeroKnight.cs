@@ -248,7 +248,7 @@ void AE_ResetRoll()
     }
 
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnCollisionEnter2D(Collider2D other)
     {
         if (other.CompareTag("Potion"))
         {

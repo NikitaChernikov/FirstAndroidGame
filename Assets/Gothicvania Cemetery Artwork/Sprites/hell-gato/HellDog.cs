@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HellsDog : MonoBehaviour
+public class HellDog : MonoBehaviour
 {
     ////////////////////////////////////////////////////////////////////// 
     public int health;
