@@ -236,7 +236,7 @@ void AE_ResetRoll()
         Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPose.position, attackRange, whatIsEnemy);
         for (int i = 0; i < enemiesToDamage.Length; i++)
         {
-            if (gameObject.transform.position.y >= -10)
+            if (whatIsEnemy == LayerMask.GetMask("Enemy"))
             {
                 enemiesToDamage[i].GetComponent<Bandit>().TakeDamage(damage);
             }
