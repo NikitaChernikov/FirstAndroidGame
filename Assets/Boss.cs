@@ -10,7 +10,7 @@ public class Boss : MonoBehaviour
     private HeroKnight player;
     bool idle = true;
     bool run = false;
-    bool hurt = false;
+    //bool hurt = false;
     bool defeat = false;
 
     public int health;
@@ -115,7 +115,8 @@ public class Boss : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        FindObjectOfType<AudioManager>().Play("Damage");
+        //FindObjectOfType<AudioManager>().Play("Damage");
+        Debug.Log("Boss took a hit");
         anim.SetTrigger("Hurt");
         health -= damage;
         enemyHealthBar.SetHealth(health);

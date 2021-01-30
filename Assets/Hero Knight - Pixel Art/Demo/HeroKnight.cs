@@ -236,21 +236,22 @@ void AE_ResetRoll()
         Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPose.position, attackRange, whatIsEnemy);
         for (int i = 0; i < enemiesToDamage.Length; i++)
         {
-            if (whatIsEnemy == LayerMask.GetMask("Enemy"))
+            if (whatIsEnemy == LayerMask.GetMask("Bandit"))
             {
                 enemiesToDamage[i].GetComponent<Bandit>().TakeDamage(damage);
             }
             else
             {
                 enemiesToDamage[i].GetComponent<Boss>().TakeDamage(damage);
+                Debug.Log("Player made a hit");
             }
         }
     }
 
 
-    private void OnCollisionEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.CompareTag("Potion"))
+        if (other.collider.CompareTag("Potion"))
         {
             if (health <= 45)
             {
