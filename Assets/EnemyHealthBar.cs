@@ -28,6 +28,6 @@ public class EnemyHealthBar : MonoBehaviour
 
     public void RemoveHealthBar()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

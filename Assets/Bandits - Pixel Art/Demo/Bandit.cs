@@ -98,10 +98,13 @@ public class Bandit : MonoBehaviour {
     /// //////////////////////////////////////////////////////////////////////////////////////////////////
     public void TakeDamage(int damage)
     {
-        m_animator.SetTrigger("Hurt");
-        health -= damage;
-        FindObjectOfType<AudioManager>().Play("Damage");
-        enemyHealthBar.SetHealth(health);
+        if (health > 0)
+        {
+            m_animator.SetTrigger("Hurt");
+            health -= damage;
+            FindObjectOfType<AudioManager>().Play("Damage");
+            enemyHealthBar.SetHealth(health);
+        }
     }
 
     public void OnPlayerAttack()
