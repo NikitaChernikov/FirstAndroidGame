@@ -236,14 +236,13 @@ void AE_ResetRoll()
         Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPose.position, attackRange, whatIsEnemy);
         for (int i = 0; i < enemiesToDamage.Length; i++)
         {
-            if (whatIsEnemy == LayerMask.GetMask("Bandit"))
+            if (enemiesToDamage[i].name.Equals("Enemy"))
             {
                 enemiesToDamage[i].GetComponent<Bandit>().TakeDamage(damage);
             }
-            else
+            else if (enemiesToDamage[i].name.Equals("Boss 1"))
             {
                 enemiesToDamage[i].GetComponent<Boss>().TakeDamage(damage);
-                Debug.Log("Player made a hit");
             }
         }
     }

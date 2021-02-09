@@ -22,7 +22,7 @@ public class Boss : MonoBehaviour
 
     private void Start()
     {
-        player = GetComponent<HeroKnight>();
+        //player = GetComponent<HeroKnight>();
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
         player = FindObjectOfType<HeroKnight>();
@@ -115,8 +115,8 @@ public class Boss : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        //FindObjectOfType<AudioManager>().Play("Damage");
-        Debug.Log("Boss took a hit");
+        FindObjectOfType<AudioManager>().Play("Damage");
+        
         anim.SetTrigger("Hurt");
         health -= damage;
         enemyHealthBar.SetHealth(health);
